@@ -1,0 +1,46 @@
+export enum ProductType {
+  TRADITIONAL = 'TRADITIONAL',
+  CUSTOMIZABLE = 'CUSTOMIZABLE',
+}
+
+export enum ProductStatus {
+  DRAFT = 'DRAFT',
+  PUBLISHED = 'PUBLISHED',
+  ARCHIVED = 'ARCHIVED',
+}
+
+export enum CustomizationType {
+  PRINT = 'PRINT',
+  ENGRAVE = 'ENGRAVE',
+  PRINT_3D = 'PRINT_3D',
+  EMBROIDERY = 'EMBROIDERY',
+  HANDMADE = 'HANDMADE',
+  HEAT_PRESS = 'HEAT_PRESS',
+  SCREEN_PRINT = 'SCREEN_PRINT',
+  UV_PRINT = 'UV_PRINT',
+  CNC = 'CNC',
+  OTHER = 'OTHER',
+}
+
+export enum AttributeType {
+  TEXT = 'TEXT',
+  NUMBER = 'NUMBER',
+  SELECT = 'SELECT',
+  MULTI_SELECT = 'MULTI_SELECT',
+  BOOLEAN = 'BOOLEAN',
+  COLOR = 'COLOR',
+  DIMENSIONS = 'DIMENSIONS',
+}
+
+export enum CustomFieldType {
+  TEXT = 'TEXT',
+  TEXTAREA = 'TEXTAREA',
+  NUMBER = 'NUMBER',
+  IMAGE = 'IMAGE',
+  FILE = 'FILE',
+  SELECT = 'SELECT',
+  COLOR = 'COLOR',
+  FONT = 'FONT',
+  DATE = 'DATE',
+  MULTI_IMAGE = 'MULTI_IMAGE',
+}
