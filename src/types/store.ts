@@ -1,3 +1,5 @@
+import { StoreType } from '../constants/store';
+
 export interface IStore {
   id: string;
   creator_id: string;
@@ -7,6 +9,7 @@ export interface IStore {
   description?: string;
   logo_url?: string;
   favicon_url?: string;
+  store_type: StoreType;
   theme_config: Record<string, unknown>;
   is_active: boolean;
 }

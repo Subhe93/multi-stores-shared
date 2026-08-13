@@ -53,4 +53,31 @@ export interface ICategoryTranslation {
     name: string;
     description?: string;
 }
+export type CreatorCategoryMatchRule = 'MANUAL' | 'TAGS';
+export interface ICreatorCategory {
+    id: string;
+    creator_id: string;
+    parent_id?: string | null;
+    slug: string;
+    thumbnail_url?: string | null;
+    match_rule: CreatorCategoryMatchRule;
+    match_tags: string[];
+    sort_order: number;
+    is_active: boolean;
+    created_at: Date;
+    updated_at: Date;
+    translations?: ICreatorCategoryTranslation[];
+    children?: ICreatorCategory[];
+    _count?: {
+        products?: number;
+        children?: number;
+    };
+}
+export interface ICreatorCategoryTranslation {
+    id: string;
+    creator_category_id: string;
+    locale: string;
+    name: string;
+    description?: string | null;
+}
 //# sourceMappingURL=product.d.ts.map
