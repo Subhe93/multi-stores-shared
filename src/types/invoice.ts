@@ -3,7 +3,7 @@
 // the mirrors in api (src/modules/invoices/invoices.types.ts) / web /
 // dashboard — keep in sync.
 
-import type { BuyerType } from './b2b';
+import type { BuyerType, TaxExemptReason } from './b2b';
 
 export type InvoiceKind = 'INVOICE' | 'CREDIT_NOTE';
 
@@ -151,6 +151,11 @@ export interface InvoiceSummary {
   pdf_available: boolean;
   /** INVOICE: gross still creditable; CREDIT_NOTE: null. */
   remaining_creditable: number | null;
+  /** b2b app M2.5: why the document carries no VAT; null when taxed. */
+  tax_exempt_reason: TaxExemptReason | null;
+  /** b2b app M2.5: buyer VAT number / ISO2 country of an exempt document. */
+  buyer_vat_number: string | null;
+  buyer_country: string | null;
 }
 
 /** GET /invoices/my/:id. */
