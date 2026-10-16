@@ -29,6 +29,8 @@ export interface IProductTranslation {
   slug: string;
   meta_title?: string;
   meta_desc?: string;
+  /** Short HTML summary (M4.4); null when not set. */
+  short_description?: string | null;
 }
 
 export interface IProductVariant {
@@ -71,6 +73,10 @@ export interface ICreatorCategory {
   match_tags: string[];
   sort_order: number;
   is_active: boolean;
+  /** Noindex + leave out of the sitemap while it lists no published product (M4.4). */
+  noindex_when_empty?: boolean;
+  /** Public tree only, and only when some collection of the store is flagged. */
+  published_product_count?: number;
   created_at: Date;
   updated_at: Date;
   translations?: ICreatorCategoryTranslation[];
@@ -84,4 +90,7 @@ export interface ICreatorCategoryTranslation {
   locale: string;
   name: string;
   description?: string | null;
+  /** SEO overrides (M4.4); null = use name / description. */
+  meta_title?: string | null;
+  meta_desc?: string | null;
 }

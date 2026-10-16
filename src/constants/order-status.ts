@@ -15,6 +15,8 @@ export enum FulfillmentStatus {
   PENDING = 'PENDING',
   PROCESSING = 'PROCESSING',
   MANUFACTURING = 'MANUFACTURING',
+  // M4.3: a line can sit in quality check between manufacturing and shipping.
+  QUALITY_CHECK = 'QUALITY_CHECK',
   SHIPPED = 'SHIPPED',
   DELIVERED = 'DELIVERED',
 }
