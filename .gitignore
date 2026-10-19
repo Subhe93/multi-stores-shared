@@ -1,2 +1,4 @@
 node_modules/
 dist/
+# @multi-stores/core ships its build (consumed via file: links, never built on the server).
+!/packages/core/dist/

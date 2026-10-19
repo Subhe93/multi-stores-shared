@@ -1,9 +1,9 @@
 /**
  * Visibility conditions and option counts (M4.1 §3.3, D6).
- * Mirrored with types.ts (see the KEEP IN SYNC note there). Pure code only.
+ * Part of `@multi-stores/core/personalization` (see types.ts). Pure code only.
  */
 
-import { isPlainObject } from './rules';
+import { isPlainObject } from './rules.js';
 import {
   P_CONDITION_OPS,
   type PConditionOp,
@@ -11,7 +11,7 @@ import {
   type PConditions,
   type PContext,
   type POptionConfig,
-} from './types';
+} from './types.js';
 
 /** Value of an earlier field as conditions see it (canonical; `undefined` = missing/hidden). */
 export type PFieldValueLookup = (name: string) => unknown;

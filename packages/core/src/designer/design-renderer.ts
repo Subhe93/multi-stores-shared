@@ -1,13 +1,11 @@
 /*
  * Designer renderer (M4.2 WP1) — RENDERER_VERSION 1.1.0.
  *
- * SOURCE OF TRUTH: multi-stores-shared/src/designer/design-renderer.ts
- * Mirrors (byte-identical, never edit them by hand):
- *   - multi-stores-api/src/modules/designer/render/design-renderer.ts
- *   - multi-stores-web/src/lib/designer/design-renderer.ts
- *   - multi-stores-dashboard/src/lib/designer/design-renderer.ts
- * Run `node multi-stores-shared/scripts/sync-designer-renderer.mjs` after an edit
- * (it copies the file and rewrites each repo's RENDERER_SHA256 constant).
+ * Lives in the `@multi-stores/core` package (M5.3): api, web and dashboard
+ * import it from `@multi-stores/core/designer`; never copy it into an app.
+ * After an edit run `npm run build` in multi-stores-shared/packages/core
+ * (it rebuilds dist/ and pins the new RENDERER_SHA256) and bump
+ * RENDERER_VERSION when the drawn output changes (see docs/SHARED-PACKAGE.md).
  *
  * Rules for this file:
  *   - zero imports, no DOM globals at import time (runs in Node, browsers,
@@ -792,8 +790,9 @@ export function normalizeText(v: string): string {
 
 /**
  * Code points after NFC and removal of U+FE0E/U+FE0F. Same semantics as `charCount`
- * in multi-stores-shared/src/personalization/rules.ts (M4-INTEGRATION C14); duplicated
- * under a renderer-specific name because this file must stay import-free (D2 mirrors).
+ * in @multi-stores/core/personalization/rules (M4-INTEGRATION C14); duplicated
+ * under a renderer-specific name because this file must stay import-free (the api
+ * serves its compiled form as a classic script to the render page).
  */
 export function designTextLength(v: string): number {
   // Array.from iterates code points, not UTF-16 units.
@@ -891,7 +890,7 @@ function readClassAtom(
  * A leading bare `^` keeps its negation meaning. Accepted bodies match the
  * M4.0 `compileAllowedChars` (rules.ts) semantics: `^[<body>]*$` with `u`.
  * Returns null when the body is refused. Duplicated (not imported) because this
- * file must stay import-free (D2 mirrors).
+ * file must stay import-free (see designTextLength).
  */
 export function compileDesignAllowedChars(body: string): RegExp | null {
   if (

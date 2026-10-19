@@ -1,6 +1,6 @@
 /**
  * Personalization evaluator (M4.1 §3.2, D3/D4/D5/D8/D10, contracts C1/C14/C15/C34).
- * Mirrored with types.ts (see the KEEP IN SYNC note there). Pure code only.
+ * Part of `@multi-stores/core/personalization` (see types.ts). Pure code only.
  *
  * `evaluatePersonalization(defs, raw, ctx)`:
  * - app off → the M4.0 validator (`validatePersonalization`) on top-level
@@ -22,8 +22,8 @@ import {
   type Issue,
   type NormalizedValue,
   type NormalizedValues,
-} from './rules';
-import { evaluateConditions, findOptionConfig, isValueSet, optionCount } from './conditions';
+} from './rules.js';
+import { evaluateConditions, findOptionConfig, isValueSet, optionCount } from './conditions.js';
 import {
   APP_ONLY_TYPES,
   P_MESSAGE_KEYS,
@@ -40,7 +40,7 @@ import {
   type PResult,
   type PTranslation,
   type PUi,
-} from './types';
+} from './types.js';
 
 // ---------------------------------------------------------------------------
 // Money (integer minor units; no float arithmetic on amounts)

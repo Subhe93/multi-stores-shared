@@ -1,14 +1,14 @@
 /**
  * Personalization app types (M4.1 §3.1, contracts C1/C12/C34).
  *
- * KEEP IN SYNC: types.ts, conditions.ts, evaluator.ts, display.ts and
- * personalization-cases.json are copied byte-for-byte to
- *   - multi-stores-api/src/common/personalization/ (with a 3-line mirror header)
- *   - multi-stores-web/src/lib/personalization/ (sha256 pinned in evaluator.hash.ts)
+ * Lives in the `@multi-stores/core` package (M5.3) together with
+ * conditions.ts, evaluator.ts and display.ts; the apps import it from
+ * `@multi-stores/core/personalization`. `fixtures/personalization-cases.json`
+ * holds the cases the api and web specs run (see docs/SHARED-PACKAGE.md).
  * Pure code only: no Node, DOM, Nest or Prisma imports.
  */
 
-import type { IssueCode, IssueParams, PatternTester } from './rules';
+import type { IssueCode, IssueParams, PatternTester } from './rules.js';
 
 // ---------------------------------------------------------------------------
 // Field definitions

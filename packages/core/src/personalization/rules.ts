@@ -1,13 +1,10 @@
 /**
  * Personalization field rules (M4.0) — the single source of truth.
  *
- * KEEP IN SYNC: this file is copied byte-for-byte (apart from this header's
- * location note) to
- *   - multi-stores-api/src/common/personalization/rules.ts
- *   - multi-stores-web/src/lib/personalization/rules.ts
- * and `personalization.vectors.json` next to it is copied to both places too.
- * Every copy has a spec that runs every vector, so a drifting copy fails its
- * tests. No app installs `@multi-stores/shared` today (M4.0 K6, W23).
+ * Lives in the `@multi-stores/core` package (M5.3): api, web and dashboard
+ * import it from `@multi-stores/core/personalization/rules`; never copy it
+ * into an app. `fixtures/personalization.vectors.json` holds the vectors that
+ * the api and web specs run against this module (see docs/SHARED-PACKAGE.md).
  *
  * Pure code only: no Node, DOM, Nest or Prisma imports, and nothing that
  * depends on the ICU version (lengths are code points, not graphemes — C14).

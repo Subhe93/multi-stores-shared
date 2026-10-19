@@ -1,0 +1,2 @@
+# Keep the committed package build byte-stable across platforms.
+packages/core/** text eol=lf

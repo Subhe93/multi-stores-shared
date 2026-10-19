@@ -1,7 +1,7 @@
 /**
  * Grouped personalization display (M4.1 §3.5, contracts C1/C18/C24).
- * Mirrored with types.ts (see the KEEP IN SYNC note there); the dashboard
- * copies this file alone, so it imports nothing. Pure code only.
+ * Part of `@multi-stores/core/personalization` (see types.ts); it imports
+ * nothing, so it can be consumed alone. Pure code only.
  *
  * Input rows are evaluator lines, cart display entries or order snapshot
  * rows already resolved to text (`snapshotLabel` gives `label`/`value`,

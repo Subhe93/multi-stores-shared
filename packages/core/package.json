@@ -1,0 +1,38 @@
+{
+  "name": "@multi-stores/core",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pure modules shared by multi-stores-api, -web and -dashboard (personalization rules + evaluator, designer renderer). See ../../docs/SHARED-PACKAGE.md.",
+  "license": "UNLICENSED",
+  "sideEffects": false,
+  "exports": {
+    "./designer": {
+      "types": "./dist/types/designer/design-renderer.d.ts",
+      "import": "./dist/esm/designer/design-renderer.js",
+      "require": "./dist/cjs/designer/design-renderer.js"
+    },
+    "./designer/hash": {
+      "types": "./dist/types/designer/renderer-hash.d.ts",
+      "import": "./dist/esm/designer/renderer-hash.js",
+      "require": "./dist/cjs/designer/renderer-hash.js"
+    },
+    "./personalization": {
+      "types": "./dist/types/personalization/index.d.ts",
+      "import": "./dist/esm/personalization/index.js",
+      "require": "./dist/cjs/personalization/index.js"
+    },
+    "./personalization/*": {
+      "types": "./dist/types/personalization/*.d.ts",
+      "import": "./dist/esm/personalization/*.js",
+      "require": "./dist/cjs/personalization/*.js"
+    },
+    "./fixtures/*": "./fixtures/*",
+    "./tools/*": "./tools/*",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "node scripts/check.mjs"
+  }
+}
