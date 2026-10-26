@@ -78,6 +78,8 @@ export interface MarketRoute {
   is_default: boolean;
   primary_hostname: string | null;
   status: MarketStatus;
+  /** M6: served with robots noindex and left out of other markets' hreflang. */
+  noindex: boolean;
   preview?: true;
 }
 
@@ -116,6 +118,8 @@ export interface MarketView {
   currency: string;
   is_default: boolean;
   status: MarketStatus;
+  /** M6: keep the market out of search engines (still routed and listed). */
+  noindex: boolean;
   price_rule: PriceRule;
   payment_check: PaymentCheck | null;
   /** Base → market rate in effect (null when it cannot be determined). */
