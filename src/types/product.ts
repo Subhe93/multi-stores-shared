@@ -63,6 +63,13 @@ export interface ICategoryTranslation {
 
 export type CreatorCategoryMatchRule = 'MANUAL' | 'TAGS';
 
+/**
+ * M6.3: PUBLIC = a storefront collection (own page, menus, breadcrumbs,
+ * sitemap). INTERNAL = a label that only groups products for builder pages;
+ * never served by the public tree, never a parent/child, never the primary.
+ */
+export type CreatorCategoryVisibility = 'PUBLIC' | 'INTERNAL';
+
 export interface ICreatorCategory {
   id: string;
   creator_id: string;
@@ -73,6 +80,8 @@ export interface ICreatorCategory {
   match_tags: string[];
   sort_order: number;
   is_active: boolean;
+  /** M6.3; absent on older payloads = PUBLIC. */
+  visibility?: CreatorCategoryVisibility;
   /** Noindex + leave out of the sitemap while it lists no published product (M4.4). */
   noindex_when_empty?: boolean;
   /** Public tree only, and only when some collection of the store is flagged. */
