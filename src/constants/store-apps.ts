@@ -12,6 +12,7 @@ export const STORE_APP_KEYS = [
   'production',
   'designer',
   'feeds',
+  'zoho_mail',
 ] as const;
 
 export type StoreAppKey = (typeof STORE_APP_KEYS)[number];
@@ -131,6 +132,16 @@ export const STORE_APPS: Record<StoreAppKey, StoreAppDefinition> = {
     name_key: 'feeds.name',
     description_key: 'feeds.description',
     requires_independent: false,
+    depends_on: [],
+    expose_settings_to_storefront: false,
+  },
+  // Store emails sent through the store's own Zoho Mail account (OAuth, send
+  // scope only). Independent stores send under their own domain only.
+  zoho_mail: {
+    key: 'zoho_mail',
+    name_key: 'zoho_mail.name',
+    description_key: 'zoho_mail.description',
+    requires_independent: true,
     depends_on: [],
     expose_settings_to_storefront: false,
   },
