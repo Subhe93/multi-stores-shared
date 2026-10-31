@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "test": "node packages/core/scripts/check.mjs"
+    "test": "node packages/core/scripts/check.mjs && node --test packages/core/test/*.test.mjs"
   },
   "devDependencies": {
     "@types/node": "^25.5.2",

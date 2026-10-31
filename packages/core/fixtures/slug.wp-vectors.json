@@ -1,0 +1,646 @@
+[
+    {
+        "input": "Svärfar",
+        "locale": "sv_SE",
+        "wpPostName": "svarfar",
+        "wpDecoded": "svarfar",
+        "ours": "svarfar"
+    },
+    {
+        "input": "Svärfar",
+        "locale": "en_US",
+        "wpPostName": "svarfar",
+        "wpDecoded": "svarfar",
+        "ours": "svarfar"
+    },
+    {
+        "input": "Pojkvän",
+        "locale": "sv_SE",
+        "wpPostName": "pojkvan",
+        "wpDecoded": "pojkvan",
+        "ours": "pojkvan"
+    },
+    {
+        "input": "Åsa",
+        "locale": "sv_SE",
+        "wpPostName": "asa",
+        "wpDecoded": "asa",
+        "ours": "asa"
+    },
+    {
+        "input": "Öl",
+        "locale": "sv_SE",
+        "wpPostName": "ol",
+        "wpDecoded": "ol",
+        "ours": "ol"
+    },
+    {
+        "input": "Kläder",
+        "locale": "sv_SE",
+        "wpPostName": "klader",
+        "wpDecoded": "klader",
+        "ours": "klader"
+    },
+    {
+        "input": "Kläder & Skor för Barn",
+        "locale": "sv_SE",
+        "wpPostName": "klader-skor-for-barn",
+        "wpDecoded": "klader-skor-for-barn",
+        "ours": "klader-skor-for-barn"
+    },
+    {
+        "input": "Smörgåsbord i Göteborg",
+        "locale": "sv_SE",
+        "wpPostName": "smorgasbord-i-goteborg",
+        "wpDecoded": "smorgasbord-i-goteborg",
+        "ours": "smorgasbord-i-goteborg"
+    },
+    {
+        "input": "ÅÄÖ åäö",
+        "locale": "sv_SE",
+        "wpPostName": "aao-aao",
+        "wpDecoded": "aao-aao",
+        "ours": "aao-aao"
+    },
+    {
+        "input": "Größe Über Äpfel",
+        "locale": "en_US",
+        "wpPostName": "grose-uber-apfel",
+        "wpDecoded": "grose-uber-apfel",
+        "ours": "grose-uber-apfel"
+    },
+    {
+        "input": "Größe Über Äpfel",
+        "locale": "de_DE",
+        "wpPostName": "groesse-ueber-aepfel",
+        "wpDecoded": "groesse-ueber-aepfel",
+        "ours": "groesse-ueber-aepfel"
+    },
+    {
+        "input": "Straße",
+        "locale": "en_US",
+        "wpPostName": "strase",
+        "wpDecoded": "strase",
+        "ours": "strase"
+    },
+    {
+        "input": "Straße",
+        "locale": "de_CH",
+        "wpPostName": "strasse",
+        "wpDecoded": "strasse",
+        "ours": "strasse"
+    },
+    {
+        "input": "STRAẞE",
+        "locale": "en_US",
+        "wpPostName": "stra%c3%9fe",
+        "wpDecoded": "straße",
+        "ours": "straße"
+    },
+    {
+        "input": "STRAẞE",
+        "locale": "de_DE",
+        "wpPostName": "strasse",
+        "wpDecoded": "strasse",
+        "ours": "strasse"
+    },
+    {
+        "input": "Rødgrød med fløde",
+        "locale": "en_US",
+        "wpPostName": "rodgrod-med-flode",
+        "wpDecoded": "rodgrod-med-flode",
+        "ours": "rodgrod-med-flode"
+    },
+    {
+        "input": "Rødgrød med fløde",
+        "locale": "da_DK",
+        "wpPostName": "roedgroed-med-floede",
+        "wpDecoded": "roedgroed-med-floede",
+        "ours": "roedgroed-med-floede"
+    },
+    {
+        "input": "Æble på Ærø",
+        "locale": "da_DK",
+        "wpPostName": "aeble-paa-aeroe",
+        "wpDecoded": "aeble-paa-aeroe",
+        "ours": "aeble-paa-aeroe"
+    },
+    {
+        "input": "Æble på Ærø",
+        "locale": "en_US",
+        "wpPostName": "aeble-pa-aero",
+        "wpDecoded": "aeble-pa-aero",
+        "ours": "aeble-pa-aero"
+    },
+    {
+        "input": "Crème brûlée à la française",
+        "locale": "fr_FR",
+        "wpPostName": "creme-brulee-a-la-francaise",
+        "wpDecoded": "creme-brulee-a-la-francaise",
+        "ours": "creme-brulee-a-la-francaise"
+    },
+    {
+        "input": "Ça va être génial",
+        "locale": "fr_FR",
+        "wpPostName": "ca-va-etre-genial",
+        "wpDecoded": "ca-va-etre-genial",
+        "ours": "ca-va-etre-genial"
+    },
+    {
+        "input": "Œuvre d’art «spéciale»",
+        "locale": "fr_FR",
+        "wpPostName": "oeuvre-dart-speciale",
+        "wpDecoded": "oeuvre-dart-speciale",
+        "ours": "oeuvre-dart-speciale"
+    },
+    {
+        "input": "L'été — très chaud",
+        "locale": "fr_FR",
+        "wpPostName": "lete-tres-chaud",
+        "wpDecoded": "lete-tres-chaud",
+        "ours": "lete-tres-chaud"
+    },
+    {
+        "input": "Işık İstanbul",
+        "locale": "tr_TR",
+        "wpPostName": "isik-istanbul",
+        "wpDecoded": "isik-istanbul",
+        "ours": "isik-istanbul"
+    },
+    {
+        "input": "Şeker Ğüzel Çiçek Öğün Üzüm",
+        "locale": "tr_TR",
+        "wpPostName": "seker-guzel-cicek-ogun-uzum",
+        "wpDecoded": "seker-guzel-cicek-ogun-uzum",
+        "ours": "seker-guzel-cicek-ogun-uzum"
+    },
+    {
+        "input": "ıIiİ",
+        "locale": "tr_TR",
+        "wpPostName": "iiii",
+        "wpDecoded": "iiii",
+        "ours": "iiii"
+    },
+    {
+        "input": "Año Niño Señor",
+        "locale": "es_ES",
+        "wpPostName": "ano-nino-senor",
+        "wpDecoded": "ano-nino-senor",
+        "ours": "ano-nino-senor"
+    },
+    {
+        "input": "Łódź Żółć",
+        "locale": "pl_PL",
+        "wpPostName": "lodz-zolc",
+        "wpDecoded": "lodz-zolc",
+        "ours": "lodz-zolc"
+    },
+    {
+        "input": "Čeština Šťastný",
+        "locale": "cs_CZ",
+        "wpPostName": "cestina-stastny",
+        "wpDecoded": "cestina-stastny",
+        "ours": "cestina-stastny"
+    },
+    {
+        "input": "Đorđe Đaković",
+        "locale": "sr_RS",
+        "wpPostName": "djordje-djakovic",
+        "wpDecoded": "djordje-djakovic",
+        "ours": "djordje-djakovic"
+    },
+    {
+        "input": "Đorđe Đaković",
+        "locale": "en_US",
+        "wpPostName": "dorde-dakovic",
+        "wpDecoded": "dorde-dakovic",
+        "ours": "dorde-dakovic"
+    },
+    {
+        "input": "Paral·lel",
+        "locale": "ca",
+        "wpPostName": "parallel",
+        "wpDecoded": "parallel",
+        "ours": "parallel"
+    },
+    {
+        "input": "Paral·lel",
+        "locale": "en_US",
+        "wpPostName": "paral%c2%b7lel",
+        "wpDecoded": "paral·lel",
+        "ours": "paral·lel"
+    },
+    {
+        "input": "Café Ménu",
+        "locale": "en_US",
+        "wpPostName": "cafe-menu",
+        "wpDecoded": "cafe-menu",
+        "ours": "cafe-menu"
+    },
+    {
+        "input": "Hello, World!",
+        "locale": "en_US",
+        "wpPostName": "hello-world",
+        "wpDecoded": "hello-world",
+        "ours": "hello-world"
+    },
+    {
+        "input": "“Smart” ‘quotes’ and \"dumb\" 'quotes'",
+        "locale": "en_US",
+        "wpPostName": "smart-quotes-and-dumb-quotes",
+        "wpDecoded": "smart-quotes-and-dumb-quotes",
+        "ours": "smart-quotes-and-dumb-quotes"
+    },
+    {
+        "input": "Tom & Jerry",
+        "locale": "en_US",
+        "wpPostName": "tom-jerry",
+        "wpDecoded": "tom-jerry",
+        "ours": "tom-jerry"
+    },
+    {
+        "input": "Salt & Pepper; Spicy",
+        "locale": "en_US",
+        "wpPostName": "salt-spicy",
+        "wpDecoded": "salt-spicy",
+        "ours": "salt-spicy"
+    },
+    {
+        "input": "Tom &amp; Jerry",
+        "locale": "en_US",
+        "wpPostName": "tom-jerry",
+        "wpDecoded": "tom-jerry",
+        "ours": "tom-jerry"
+    },
+    {
+        "input": "Price: 100€ / £50 / $20",
+        "locale": "en_US",
+        "wpPostName": "price-100e-50-20",
+        "wpDecoded": "price-100e-50-20",
+        "ours": "price-100e-50-20"
+    },
+    {
+        "input": "50% off",
+        "locale": "en_US",
+        "wpPostName": "50-off",
+        "wpDecoded": "50-off",
+        "ours": "50-off"
+    },
+    {
+        "input": "Rabatt 50%AB",
+        "locale": "en_US",
+        "wpPostName": "rabatt-50%ab",
+        "wpDecoded": "(invalid UTF-8)",
+        "ours": "rabatt-50ab"
+    },
+    {
+        "input": "Hello%20World",
+        "locale": "en_US",
+        "wpPostName": "hello%20world",
+        "wpDecoded": "hello world",
+        "ours": "hello-world"
+    },
+    {
+        "input": "3×4 matrix",
+        "locale": "en_US",
+        "wpPostName": "3x4-matrix",
+        "wpDecoded": "3x4-matrix",
+        "ours": "3x4-matrix"
+    },
+    {
+        "input": "Version 1.2.3_beta",
+        "locale": "en_US",
+        "wpPostName": "version-1-2-3_beta",
+        "wpDecoded": "version-1-2-3_beta",
+        "ours": "version-1-2-3_beta"
+    },
+    {
+        "input": "a/b\\c",
+        "locale": "en_US",
+        "wpPostName": "a-bc",
+        "wpDecoded": "a-bc",
+        "ours": "a-bc"
+    },
+    {
+        "input": "C++ & C# — guide…",
+        "locale": "en_US",
+        "wpPostName": "c-c-guide",
+        "wpDecoded": "c-c-guide",
+        "ours": "c-c-guide"
+    },
+    {
+        "input": "Copyright © 2024 ® ™",
+        "locale": "en_US",
+        "wpPostName": "copyright-2024",
+        "wpDecoded": "copyright-2024",
+        "ours": "copyright-2024"
+    },
+    {
+        "input": "¿Qué? ¡Sí!",
+        "locale": "es_ES",
+        "wpPostName": "que-si",
+        "wpDecoded": "que-si",
+        "ours": "que-si"
+    },
+    {
+        "input": "<b>Bold</b> <script>x</script>title",
+        "locale": "en_US",
+        "wpPostName": "bold-xtitle",
+        "wpDecoded": "bold-xtitle",
+        "ours": "bold-xtitle"
+    },
+    {
+        "input": "  Multiple   spaces\tand\ttabs  ",
+        "locale": "en_US",
+        "wpPostName": "multiple-spacesandtabs",
+        "wpDecoded": "multiple-spacesandtabs",
+        "ours": "multiple-spacesandtabs"
+    },
+    {
+        "input": "--Leading and trailing--",
+        "locale": "en_US",
+        "wpPostName": "leading-and-trailing",
+        "wpDecoded": "leading-and-trailing",
+        "ours": "leading-and-trailing"
+    },
+    {
+        "input": "a - - - b",
+        "locale": "en_US",
+        "wpPostName": "a-b",
+        "wpDecoded": "a-b",
+        "ours": "a-b"
+    },
+    {
+        "input": "non breaking‑hyphen–en—em",
+        "locale": "en_US",
+        "wpPostName": "non-breaking-hyphen-en-em",
+        "wpDecoded": "non-breaking-hyphen-en-em",
+        "ours": "non-breaking-hyphen-en-em"
+    },
+    {
+        "input": "thin space​zero­soft",
+        "locale": "en_US",
+        "wpPostName": "thin-spacezerosoft",
+        "wpDecoded": "thin-spacezerosoft",
+        "ours": "thin-spacezerosoft"
+    },
+    {
+        "input": "UPPER Case MiXeD",
+        "locale": "en_US",
+        "wpPostName": "upper-case-mixed",
+        "wpDecoded": "upper-case-mixed",
+        "ours": "upper-case-mixed"
+    },
+    {
+        "input": "2024",
+        "locale": "en_US",
+        "wpPostName": "2024",
+        "wpDecoded": "2024",
+        "ours": "2024"
+    },
+    {
+        "input": "123 456",
+        "locale": "en_US",
+        "wpPostName": "123-456",
+        "wpDecoded": "123-456",
+        "ours": "123-456"
+    },
+    {
+        "input": "I ❤️ Stockholm 🇸🇪",
+        "locale": "en_US",
+        "wpPostName": "i-%e2%9d%a4%ef%b8%8f-stockholm-%f0%9f%87%b8%f0%9f%87%aa",
+        "wpDecoded": "i-❤️-stockholm-🇸🇪",
+        "ours": "i-❤️-stockholm-🇸🇪"
+    },
+    {
+        "input": "Family 👨‍👩‍👧 pack",
+        "locale": "en_US",
+        "wpPostName": "family-%f0%9f%91%a8%f0%9f%91%a9%f0%9f%91%a7-pack",
+        "wpDecoded": "family-👨👩👧-pack",
+        "ours": "family-👨👩👧-pack"
+    },
+    {
+        "input": "🔥🔥🔥",
+        "locale": "en_US",
+        "wpPostName": "%f0%9f%94%a5%f0%9f%94%a5%f0%9f%94%a5",
+        "wpDecoded": "🔥🔥🔥",
+        "ours": "🔥🔥🔥"
+    },
+    {
+        "input": "مرحبا بالعالم",
+        "locale": "ar",
+        "wpPostName": "%d9%85%d8%b1%d8%ad%d8%a8%d8%a7-%d8%a8%d8%a7%d9%84%d8%b9%d8%a7%d9%84%d9%85",
+        "wpDecoded": "مرحبا-بالعالم",
+        "ours": "مرحبا-بالعالم"
+    },
+    {
+        "input": "مَرْحَبًا بِالْعَالَمِ",
+        "locale": "ar",
+        "wpPostName": "%d9%85%d9%8e%d8%b1%d9%92%d8%ad%d9%8e%d8%a8%d9%8b%d8%a7-%d8%a8%d9%90%d8%a7%d9%84%d9%92%d8%b9%d9%8e%d8%a7%d9%84%d9%8e%d9%85%d9%90",
+        "wpDecoded": "مَرْحَبًا-بِالْعَالَمِ",
+        "ours": "مَرْحَبًا-بِالْعَالَمِ"
+    },
+    {
+        "input": "مرحـــبا",
+        "locale": "ar",
+        "wpPostName": "%d9%85%d8%b1%d8%ad%d9%80%d9%80%d9%80%d8%a8%d8%a7",
+        "wpDecoded": "مرحـــبا",
+        "ours": "مرحـــبا"
+    },
+    {
+        "input": "ملابس، أحذية؟ وإكسسوارات!",
+        "locale": "ar",
+        "wpPostName": "%d9%85%d9%84%d8%a7%d8%a8%d8%b3%d8%8c-%d8%a3%d8%ad%d8%b0%d9%8a%d8%a9%d8%9f-%d9%88%d8%a5%d9%83%d8%b3%d8%b3%d9%88%d8%a7%d8%b1%d8%a7%d8%aa",
+        "wpDecoded": "ملابس،-أحذية؟-وإكسسوارات",
+        "ours": "ملابس،-أحذية؟-وإكسسوارات"
+    },
+    {
+        "input": "عرض ٥٠٪ خصم",
+        "locale": "ar",
+        "wpPostName": "%d8%b9%d8%b1%d8%b6-%d9%a5%d9%a0%d9%aa-%d8%ae%d8%b5%d9%85",
+        "wpDecoded": "عرض-٥٠٪-خصم",
+        "ours": "عرض-٥٠٪-خصم"
+    },
+    {
+        "input": "منتج رقم ١٢٣",
+        "locale": "ar",
+        "wpPostName": "%d9%85%d9%86%d8%aa%d8%ac-%d8%b1%d9%82%d9%85-%d9%a1%d9%a2%d9%a3",
+        "wpDecoded": "منتج-رقم-١٢٣",
+        "ours": "منتج-رقم-١٢٣"
+    },
+    {
+        "input": "فستان Zara الجديد 2024",
+        "locale": "ar",
+        "wpPostName": "%d9%81%d8%b3%d8%aa%d8%a7%d9%86-zara-%d8%a7%d9%84%d8%ac%d8%af%d9%8a%d8%af-2024",
+        "wpDecoded": "فستان-zara-الجديد-2024",
+        "ours": "فستان-zara-الجديد-2024"
+    },
+    {
+        "input": "كتاب «الأيام» لطه حسين",
+        "locale": "ar",
+        "wpPostName": "%d9%83%d8%aa%d8%a7%d8%a8-%d8%a7%d9%84%d8%a3%d9%8a%d8%a7%d9%85-%d9%84%d8%b7%d9%87-%d8%ad%d8%b3%d9%8a%d9%86",
+        "wpDecoded": "كتاب-الأيام-لطه-حسين",
+        "ours": "كتاب-الأيام-لطه-حسين"
+    },
+    {
+        "input": "قميص - أزرق — مقاس XL",
+        "locale": "ar",
+        "wpPostName": "%d9%82%d9%85%d9%8a%d8%b5-%d8%a3%d8%b2%d8%b1%d9%82-%d9%85%d9%82%d8%a7%d8%b3-xl",
+        "wpDecoded": "قميص-أزرق-مقاس-xl",
+        "ours": "قميص-أزرق-مقاس-xl"
+    },
+    {
+        "input": "السعر: ١٠٠ ريال.",
+        "locale": "ar",
+        "wpPostName": "%d8%a7%d9%84%d8%b3%d8%b9%d8%b1-%d9%a1%d9%a0%d9%a0-%d8%b1%d9%8a%d8%a7%d9%84",
+        "wpDecoded": "السعر-١٠٠-ريال",
+        "ours": "السعر-١٠٠-ريال"
+    },
+    {
+        "input": "أحمد",
+        "locale": "ar",
+        "wpPostName": "%d8%a3%d8%ad%d9%85%d8%af",
+        "wpDecoded": "أحمد",
+        "ours": "أحمد"
+    },
+    {
+        "input": "ﻻ إله",
+        "locale": "ar",
+        "wpPostName": "%ef%bb%bb-%d8%a5%d9%84%d9%87",
+        "wpDecoded": "ﻻ-إله",
+        "ours": "ﻻ-إله"
+    },
+    {
+        "input": "کتاب فارسی یک",
+        "locale": "fa_IR",
+        "wpPostName": "%da%a9%d8%aa%d8%a7%d8%a8-%d9%81%d8%a7%d8%b1%d8%b3%db%8c-%db%8c%da%a9",
+        "wpDecoded": "کتاب-فارسی-یک",
+        "ours": "کتاب-فارسی-یک"
+    },
+    {
+        "input": "نیم‌فاصله",
+        "locale": "fa_IR",
+        "wpPostName": "%d9%86%db%8c%d9%85%d9%81%d8%a7%d8%b5%d9%84%d9%87",
+        "wpDecoded": "نیمفاصله",
+        "ours": "نیمفاصله"
+    },
+    {
+        "input": "%D9%85%D8%B1%D8%AD%D8%A8%D8%A7",
+        "locale": "ar",
+        "wpPostName": "%d9%85%d8%b1%d8%ad%d8%a8%d8%a7",
+        "wpDecoded": "مرحبا",
+        "ours": "مرحبا"
+    },
+    {
+        "input": "%d9%85%d8%b1%d8%ad%d8%a8%d8%a7-%d8%a8%d9%83",
+        "locale": "ar",
+        "wpPostName": "%d9%85%d8%b1%d8%ad%d8%a8%d8%a7-%d8%a8%d9%83",
+        "wpDecoded": "مرحبا-بك",
+        "ours": "مرحبا-بك"
+    },
+    {
+        "input": "sv%C3%A4rfar",
+        "locale": "sv_SE",
+        "wpPostName": "sv%c3%a4rfar",
+        "wpDecoded": "svärfar",
+        "ours": "svärfar"
+    },
+    {
+        "input": "!!!",
+        "locale": "en_US",
+        "wpPostName": "",
+        "wpDecoded": "",
+        "ours": ""
+    },
+    {
+        "input": "   ",
+        "locale": "en_US",
+        "wpPostName": "",
+        "wpDecoded": "",
+        "ours": ""
+    },
+    {
+        "input": "—",
+        "locale": "en_US",
+        "wpPostName": "",
+        "wpDecoded": "",
+        "ours": ""
+    },
+    {
+        "input": "Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet ",
+        "locale": "en_US",
+        "wpPostName": "lorem-ipsum-dolor-sit-amet-lorem-ipsum-dolor-sit-amet-lorem-ipsum-dolor-sit-amet-lorem-ipsum-dolor-sit-amet-lorem-ipsum-dolor-sit-amet-lorem-ipsum-dolor-sit-amet-lorem-ipsum-dolor-sit-amet-lorem-ipsum",
+        "wpDecoded": "lorem-ipsum-dolor-sit-amet-lorem-ipsum-dolor-sit-amet-lorem-ipsum-dolor-sit-amet-lorem-ipsum-dolor-sit-amet-lorem-ipsum-dolor-sit-amet-lorem-ipsum-dolor-sit-amet-lorem-ipsum-dolor-sit-amet-lorem-ipsum",
+        "ours": "lorem-ipsum-dolor-sit-amet-lorem-ipsum-dolor-sit-amet-lorem-ipsum-dolor-sit-amet-lorem-ipsum-dolor-sit-amet-lorem-ipsum-dolor-sit-amet-lorem-ipsum-dolor-sit-amet-lorem-ipsum-dolor-sit-amet-lorem-ipsum"
+    },
+    {
+        "input": "متجر الملابس متجر الملابس متجر الملابس متجر الملابس متجر الملابس متجر الملابس متجر الملابس متجر الملابس متجر الملابس متجر الملابس ",
+        "locale": "ar",
+        "wpPostName": "%d9%85%d8%aa%d8%ac%d8%b1-%d8%a7%d9%84%d9%85%d9%84%d8%a7%d8%a8%d8%b3-%d9%85%d8%aa%d8%ac%d8%b1-%d8%a7%d9%84%d9%85%d9%84%d8%a7%d8%a8%d8%b3-%d9%85%d8%aa%d8%ac%d8%b1-%d8%a7%d9%84%d9%85%d9%84%d8%a7%d8%a8",
+        "wpDecoded": "متجر-الملابس-متجر-الملابس-متجر-الملاب",
+        "ours": "متجر-الملابس-متجر-الملابس-متجر-الملاب"
+    },
+    {
+        "input": "x<y z",
+        "locale": "en_US",
+        "wpPostName": "x",
+        "wpDecoded": "x",
+        "ours": "x"
+    },
+    {
+        "input": "1<2 and 3>2 ok",
+        "locale": "en_US",
+        "wpPostName": "12-ok",
+        "wpDecoded": "12-ok",
+        "ours": "12-ok"
+    },
+    {
+        "input": "Line1\nLine2",
+        "locale": "en_US",
+        "wpPostName": "line1line2",
+        "wpDecoded": "line1line2",
+        "ours": "line1line2"
+    },
+    {
+        "input": "A &\nB; C",
+        "locale": "en_US",
+        "wpPostName": "a-b-c",
+        "wpDecoded": "a-b-c",
+        "ours": "a-b-c"
+    },
+    {
+        "input": "Ελληνικά ΟΔΟΣ",
+        "locale": "el",
+        "wpPostName": "%ce%b5%ce%bb%ce%bb%ce%b7%ce%bd%ce%b9%ce%ba%ce%ac-%ce%bf%ce%b4%ce%bf%cf%83",
+        "wpDecoded": "ελληνικά-οδοσ",
+        "ours": "ελληνικά-οδοσ"
+    },
+    {
+        "input": "Привет Мир",
+        "locale": "ru_RU",
+        "wpPostName": "%d0%bf%d1%80%d0%b8%d0%b2%d0%b5%d1%82-%d0%bc%d0%b8%d1%80",
+        "wpDecoded": "привет-мир",
+        "ours": "привет-мир"
+    },
+    {
+        "input": "中文 标题",
+        "locale": "zh_CN",
+        "wpPostName": "%e4%b8%ad%e6%96%87-%e6%a0%87%e9%a2%98",
+        "wpDecoded": "中文-标题",
+        "ours": "中文-标题"
+    },
+    {
+        "input": "ﬁne print",
+        "locale": "en_US",
+        "wpPostName": "%ef%ac%81ne-print",
+        "wpDecoded": "ﬁne-print",
+        "ours": "ﬁne-print"
+    },
+    {
+        "input": "0",
+        "locale": "en_US",
+        "wpPostName": "0",
+        "wpDecoded": "0",
+        "ours": "0"
+    }
+]

@@ -16,6 +16,8 @@ dependencies, not a workspace).
 | `@multi-stores/core/personalization` | barrel of the five modules below | web, dashboard |
 | `@multi-stores/core/personalization/rules` | M4.0 field rules (`validatePersonalization`, `charCount`, patterns, error codes, ...) | api, web, dashboard (`src/lib/customFields.ts` re-exports a subset) |
 | `@multi-stores/core/personalization/types` · `/conditions` · `/evaluator` · `/display` | M4.1 evaluator and grouped display | api, web |
+| `@multi-stores/core/slug` | `src/slug/` WordPress 7.1.4 `sanitize_title` port: `sanitizeTitle`, `sanitizeAsciiHandle`, `uniqueSlug`, `normalizeSlugForLookup`, `encodeSlugForUrl` (spec: `plans/slug-wp-rules/WP-SLUG-SPEC.md`) | api, web, dashboard |
+| `@multi-stores/core/fixtures/slug.wp-vectors.json` | the 92 vectors produced by real WP PHP | package `test/slug.test.mjs` |
 | `@multi-stores/core/fixtures/personalization.vectors.json` | M4.0 rule vectors | api `rules.spec.ts`, web `rules.spec.ts` |
 | `@multi-stores/core/fixtures/personalization-cases.json` | M4.1 evaluator cases | api `evaluator.spec.ts`, web `evaluator.spec.ts` |
 | `@multi-stores/core/tools/check-no-copies.mjs` | mirror guard (CLI) | app specs / dashboard check script, `scripts/check.mjs` |
@@ -36,6 +38,7 @@ packages/core/
   dist/types/          declarations -> "types" condition
   scripts/build.mjs    regenerates src/designer/renderer-hash.ts, then tsc twice
   scripts/check.mjs    dist == fresh build, hash pinned, no copies in the sibling apps
+  test/*.test.mjs      node:test suites run against dist (slug)
   tools/check-no-copies.mjs
 ```
 
@@ -53,7 +56,8 @@ uses the TypeScript of `multi-stores-shared/node_modules`.
    regenerate the goldens (api `design-renderer.golden.spec.ts`; the web
    golden spec and the api parity spec must then pass unchanged).
 4. `npm test` here (from the repo root or `packages/core`): fails on a stale
-   `dist/`, a stale hash or a copy in a sibling app.
+   `dist/`, a stale hash or a copy in a sibling app, then runs the package's
+   own `node --test` suites (`test/*.test.mjs`).
 5. Run the app suites that use the module (api `npx jest`, web `npm test`,
    dashboard `npm test`). No app change is needed unless an exported API
    changed. Commit shared together with any app commits that depend on it.

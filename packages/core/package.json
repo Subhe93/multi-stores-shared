@@ -2,7 +2,7 @@
   "name": "@multi-stores/core",
   "version": "1.0.0",
   "private": true,
-  "description": "Pure modules shared by multi-stores-api, -web and -dashboard (personalization rules + evaluator, designer renderer). See ../../docs/SHARED-PACKAGE.md.",
+  "description": "Pure modules shared by multi-stores-api, -web and -dashboard (personalization rules + evaluator, designer renderer, WordPress-compatible slugs). See ../../docs/SHARED-PACKAGE.md.",
   "license": "UNLICENSED",
   "sideEffects": false,
   "exports": {
@@ -26,6 +26,11 @@
       "import": "./dist/esm/personalization/*.js",
       "require": "./dist/cjs/personalization/*.js"
     },
+    "./slug": {
+      "types": "./dist/types/slug/index.d.ts",
+      "import": "./dist/esm/slug/index.js",
+      "require": "./dist/cjs/slug/index.js"
+    },
     "./fixtures/*": "./fixtures/*",
     "./tools/*": "./tools/*",
     "./package.json": "./package.json"
@@ -33,6 +38,6 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "check": "node scripts/check.mjs",
-    "test": "node scripts/check.mjs"
+    "test": "node scripts/check.mjs && node --test test/*.test.mjs"
   }
 }
