@@ -162,12 +162,13 @@ export function optionValues(options) {
 }
 /**
  * COLOR_PALETTE choices: `ui.palette_from_option` (that option's values ∩
- * values on active variants, hex from `colorMap`), else `options` with
- * `ui.palette_hex`.
+ * values on active variants, hex from `colorMap`, image from `swatchMap` /
+ * `imageMap`), else `options` with `ui.palette_hex`.
  */
 export function resolvePalette(def, ctx) {
     const ui = readUi(def.ui);
     const hexOf = (map, v) => isPlainObject(map) && typeof map[v] === 'string' && map[v] !== '' ? map[v] : null;
+    const imageOf = (cfg, v) => hexOf(cfg?.swatchMap, v) ?? hexOf(cfg?.imageMap, v);
     if (typeof ui.palette_from_option === 'string' && ui.palette_from_option !== '') {
         const option = ui.palette_from_option;
         const cfg = findOptionConfig(ctx, option);
@@ -175,9 +176,9 @@ export function resolvePalette(def, ctx) {
         const values = (Array.isArray(cfg?.values) ? cfg.values : []).filter((v) => typeof v === 'string' && v !== '');
         return values
             .filter((v) => !Array.isArray(active) || active.includes(v))
-            .map((v) => ({ value: v.normalize('NFC').trim(), hex: hexOf(cfg?.colorMap, v) }));
+            .map((v) => ({ value: v.normalize('NFC').trim(), hex: hexOf(cfg?.colorMap, v), image: imageOf(cfg, v) }));
     }
-    return optionValues(def.options).map((v) => ({ value: v, hex: hexOf(ui.palette_hex, v) }));
+    return optionValues(def.options).map((v) => ({ value: v, hex: hexOf(ui.palette_hex, v), image: null }));
 }
 function readCheckedRules(raw) {
     if (!isPlainObject(raw))

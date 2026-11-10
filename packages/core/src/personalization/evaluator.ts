@@ -36,6 +36,7 @@ import {
   type PLine,
   type PLineMeta,
   type PMessageKey,
+  type POptionConfig,
   type PPricingMode,
   type PResult,
   type PTranslation,
@@ -217,12 +218,18 @@ export function optionValues(options: unknown): string[] {
 export interface PaletteEntry {
   value: string;
   hex: string | null;
+  /**
+   * Swatch image of an image-style product option (`swatchMap`, else
+   * `imageMap`): a palette drawn from such an option shows the pictures the
+   * option itself shows (namez "Djur" animals), not grey discs.
+   */
+  image: string | null;
 }
 
 /**
  * COLOR_PALETTE choices: `ui.palette_from_option` (that option's values ∩
- * values on active variants, hex from `colorMap`), else `options` with
- * `ui.palette_hex`.
+ * values on active variants, hex from `colorMap`, image from `swatchMap` /
+ * `imageMap`), else `options` with `ui.palette_hex`.
  */
 export function resolvePalette(
   def: PFieldDef,
@@ -231,6 +238,8 @@ export function resolvePalette(
   const ui = readUi(def.ui);
   const hexOf = (map: unknown, v: string): string | null =>
     isPlainObject(map) && typeof map[v] === 'string' && map[v] !== '' ? (map[v] as string) : null;
+  const imageOf = (cfg: POptionConfig | null | undefined, v: string): string | null =>
+    hexOf(cfg?.swatchMap, v) ?? hexOf(cfg?.imageMap, v);
   if (typeof ui.palette_from_option === 'string' && ui.palette_from_option !== '') {
     const option = ui.palette_from_option;
     const cfg = findOptionConfig(ctx, option);
@@ -240,9 +249,9 @@ export function resolvePalette(
     );
     return values
       .filter((v) => !Array.isArray(active) || active.includes(v))
-      .map((v) => ({ value: v.normalize('NFC').trim(), hex: hexOf(cfg?.colorMap, v) }));
+      .map((v) => ({ value: v.normalize('NFC').trim(), hex: hexOf(cfg?.colorMap, v), image: imageOf(cfg, v) }));
   }
-  return optionValues(def.options).map((v) => ({ value: v, hex: hexOf(ui.palette_hex, v) }));
+  return optionValues(def.options).map((v) => ({ value: v, hex: hexOf(ui.palette_hex, v), image: null }));
 }
 
 function readCheckedRules(raw: unknown): { min?: number; max?: number } {

@@ -64,11 +64,17 @@ export declare function optionValues(options: unknown): string[];
 export interface PaletteEntry {
     value: string;
     hex: string | null;
+    /**
+     * Swatch image of an image-style product option (`swatchMap`, else
+     * `imageMap`): a palette drawn from such an option shows the pictures the
+     * option itself shows (namez "Djur" animals), not grey discs.
+     */
+    image: string | null;
 }
 /**
  * COLOR_PALETTE choices: `ui.palette_from_option` (that option's values ∩
- * values on active variants, hex from `colorMap`), else `options` with
- * `ui.palette_hex`.
+ * values on active variants, hex from `colorMap`, image from `swatchMap` /
+ * `imageMap`), else `options` with `ui.palette_hex`.
  */
 export declare function resolvePalette(def: PFieldDef, ctx: Pick<PContext, 'optionConfig' | 'activeOptionValues'>): PaletteEntry[];
 /** App-mode text normalization (D7): NFC, strip VS15/16, trim, then `ui.transform`. */

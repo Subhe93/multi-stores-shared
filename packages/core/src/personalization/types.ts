@@ -177,6 +177,9 @@ export interface POptionConfig {
   style?: string;
   values?: string[];
   colorMap?: Record<string, string>;
+  /** Image-style options (M4.4 C38): swatch thumbnail per value, then the value image. */
+  swatchMap?: Record<string, string>;
+  imageMap?: Record<string, string>;
   valueMeta?: Record<string, { count?: number; label?: string } | undefined>;
 }
 
