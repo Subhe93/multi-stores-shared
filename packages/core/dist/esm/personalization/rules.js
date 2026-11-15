@@ -9,6 +9,7 @@
  * Pure code only: no Node, DOM, Nest or Prisma imports, and nothing that
  * depends on the ICU version (lengths are code points, not graphemes — C14).
  */
+import { isValidPersonnummer } from '../se-id/index.js';
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -44,6 +45,8 @@ export const CUSTOM_FIELD_ISSUE_CODES = [
     'CUSTOM_FIELD_INVALID_FILE',
     'CUSTOM_FIELD_TOO_MANY_FILES',
     'CUSTOM_FIELD_INVALID_PAYLOAD',
+    /** TEXT/TEXTAREA with `validation_rules.format = 'personnummer'`. */
+    'CUSTOM_FIELD_INVALID_PERSONNUMMER',
 ];
 /**
  * Codes raised when a merchant saves a field definition (dashboard → API),
@@ -68,6 +71,18 @@ export const CUSTOMER_UPLOAD_ERROR_CODES = [
     /** 503: the server is low on disk space; try again later. */
     'CUSTOMER_UPLOAD_STORAGE_FULL',
 ];
+/**
+ * Built-in value formats for TEXT/TEXTAREA (`validation_rules.format`).
+ * A format is checked in code, not by a merchant regex.
+ */
+export const VALIDATION_FORMATS = ['personnummer'];
+/** Issue raised when a value does not match its field's `format`. */
+export const FORMAT_ISSUE_CODES = {
+    personnummer: 'CUSTOM_FIELD_INVALID_PERSONNUMMER',
+};
+export function isValidationFormat(v) {
+    return typeof v === 'string' && VALIDATION_FORMATS.includes(v);
+}
 // ---------------------------------------------------------------------------
 // Limits
 // ---------------------------------------------------------------------------
@@ -223,6 +238,8 @@ export function readValidationRules(raw) {
     if (typeof raw.allowed_chars === 'string' && raw.allowed_chars !== '') {
         out.allowed_chars = raw.allowed_chars;
     }
+    if (isValidationFormat(raw.format))
+        out.format = raw.format;
     return out;
 }
 /**
@@ -701,6 +718,9 @@ function checkValue(field, value, isFileRef, patternTester) {
             }
             if (rules.max_length !== undefined && len > rules.max_length) {
                 return { code: 'CUSTOM_FIELD_TOO_LONG', params: { max: rules.max_length } };
+            }
+            if (rules.format === 'personnummer' && !isValidPersonnummer(s)) {
+                return { code: FORMAT_ISSUE_CODES.personnummer };
             }
             if (rules.pattern) {
                 const re = compilePattern(rules.pattern);

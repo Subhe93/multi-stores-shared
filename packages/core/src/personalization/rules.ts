@@ -10,6 +10,8 @@
  * depends on the ICU version (lengths are code points, not graphemes — C14).
  */
 
+import { isValidPersonnummer } from '../se-id/index.js';
+
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -62,6 +64,8 @@ export const CUSTOM_FIELD_ISSUE_CODES = [
   'CUSTOM_FIELD_INVALID_FILE',
   'CUSTOM_FIELD_TOO_MANY_FILES',
   'CUSTOM_FIELD_INVALID_PAYLOAD',
+  /** TEXT/TEXTAREA with `validation_rules.format = 'personnummer'`. */
+  'CUSTOM_FIELD_INVALID_PERSONNUMMER',
 ] as const;
 
 export type IssueCode = (typeof CUSTOM_FIELD_ISSUE_CODES)[number];
@@ -126,11 +130,30 @@ export type LinkedValidation =
   | { type: 'equal_length'; target: string; fill_char?: string }
   | { type: 'max_combined'; target: string; max: number };
 
+/**
+ * Built-in value formats for TEXT/TEXTAREA (`validation_rules.format`).
+ * A format is checked in code, not by a merchant regex.
+ */
+export const VALIDATION_FORMATS = ['personnummer'] as const;
+
+export type ValidationFormat = (typeof VALIDATION_FORMATS)[number];
+
+/** Issue raised when a value does not match its field's `format`. */
+export const FORMAT_ISSUE_CODES: Record<ValidationFormat, IssueCode> = {
+  personnummer: 'CUSTOM_FIELD_INVALID_PERSONNUMMER',
+};
+
+export function isValidationFormat(v: unknown): v is ValidationFormat {
+  return typeof v === 'string' && (VALIDATION_FORMATS as readonly string[]).includes(v);
+}
+
 export interface ValidationRules {
   min_length?: number;
   max_length?: number;
   pattern?: string;
   allowed_chars?: string;
+  /** Built-in format (unknown values are ignored when read). */
+  format?: ValidationFormat;
 }
 
 export interface ValidatePersonalizationInput {
@@ -320,6 +343,7 @@ export function readValidationRules(raw: unknown): ValidationRules {
   if (typeof raw.allowed_chars === 'string' && raw.allowed_chars !== '') {
     out.allowed_chars = raw.allowed_chars;
   }
+  if (isValidationFormat(raw.format)) out.format = raw.format;
   return out;
 }
 
@@ -797,6 +821,9 @@ function checkValue(
       }
       if (rules.max_length !== undefined && len > rules.max_length) {
         return { code: 'CUSTOM_FIELD_TOO_LONG', params: { max: rules.max_length } };
+      }
+      if (rules.format === 'personnummer' && !isValidPersonnummer(s)) {
+        return { code: FORMAT_ISSUE_CODES.personnummer };
       }
       if (rules.pattern) {
         const re = compilePattern(rules.pattern);

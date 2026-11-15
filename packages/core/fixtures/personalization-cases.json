@@ -1160,6 +1160,33 @@
      "amount": 1000000
     }
    }
+  ],
+  "pnr": [
+   {
+    "id": "pn",
+    "name": "deltagare_personnummer",
+    "type": "TEXT",
+    "is_required": true,
+    "sort_order": 0,
+    "validation_rules": {
+     "format": "personnummer"
+    },
+    "translations": [
+     {
+      "locale": "sv",
+      "label": "Personnummer",
+      "display_label": "Personnummer",
+      "messages": {
+       "format": "Ange personnummer som ÅÅÅÅMMDD-XXXX."
+      }
+     },
+     {
+      "locale": "en",
+      "label": "Personal identity number",
+      "display_label": "Personal identity number"
+     }
+    ]
+   }
   ]
  },
  "evaluate": [
@@ -4548,6 +4575,83 @@
    },
    "expect": {
     "ok": true
+   }
+  },
+  {
+   "name": "PNR: valid personnummer passes",
+   "defs": "pnr",
+   "ctx": {},
+   "raw": {
+    "pn": "19811218-9876"
+   },
+   "expect": {
+    "ok": true,
+    "values": {
+     "pn": "19811218-9876"
+    }
+   }
+  },
+  {
+   "name": "PNR: bad checksum fails with the field format message",
+   "defs": "pnr",
+   "ctx": {},
+   "raw": {
+    "pn": "811218-9877"
+   },
+   "expect": {
+    "ok": false,
+    "errors": [
+     {
+      "code": "CUSTOM_FIELD_INVALID_PERSONNUMMER",
+      "field_id": "pn",
+      "field_name": "deltagare_personnummer",
+      "message": "Ange personnummer som ÅÅÅÅMMDD-XXXX."
+     }
+    ]
+   }
+  },
+  {
+   "name": "PNR: no format message in the locale gives an empty message",
+   "defs": "pnr",
+   "ctx": {
+    "locale": "en",
+    "primaryLocale": "en"
+   },
+   "raw": {
+    "pn": "811218-9877"
+   },
+   "expect": {
+    "ok": false,
+    "errors": [
+     {
+      "code": "CUSTOM_FIELD_INVALID_PERSONNUMMER",
+      "field_id": "pn",
+      "field_name": "deltagare_personnummer",
+      "message": ""
+     }
+    ]
+   }
+  },
+  {
+   "name": "legacy: personnummer format is the M4.0 check",
+   "defs": "pnr",
+   "ctx": {
+    "appEnabled": false
+   },
+   "raw": {
+    "pn": "811318-9876"
+   },
+   "compareToM40": true,
+   "expect": {
+    "ok": false,
+    "errors": [
+     {
+      "code": "CUSTOM_FIELD_INVALID_PERSONNUMMER",
+      "field_id": "pn",
+      "field_name": "deltagare_personnummer",
+      "message": ""
+     }
+    ]
    }
   },
   {

@@ -73,6 +73,8 @@ export declare const P_MESSAGE_KEYS: {
     readonly max_length: "CUSTOM_FIELD_TOO_LONG";
     readonly min_checked: "CUSTOM_FIELD_MIN_CHECKED";
     readonly max_checked: "CUSTOM_FIELD_MAX_CHECKED";
+    /** Built-in `validation_rules.format` (e.g. personnummer). */
+    readonly format: "CUSTOM_FIELD_INVALID_PERSONNUMMER";
 };
 export type PMessageKey = keyof typeof P_MESSAGE_KEYS;
 export interface PTranslation {

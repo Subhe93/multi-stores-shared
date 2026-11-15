@@ -574,6 +574,54 @@
       "fields": [{ "id": "f1", "name": "future", "type": "CHECKBOX_GROUP", "is_required": false }],
       "values": { "f1": ["a", "b"] },
       "expected": { "ok": true, "issues": [], "values": { "f1": ["a", "b"] } }
+    },
+    {
+      "name": "personnummer format accepts a valid number",
+      "fields": [{ "id": "f1", "name": "pnr", "type": "TEXT", "is_required": true, "validation_rules": { "format": "personnummer" } }],
+      "values": { "f1": "811218-9876" },
+      "expected": { "ok": true, "issues": [], "values": { "f1": "811218-9876" } }
+    },
+    {
+      "name": "personnummer format accepts 12 digits and a samordningsnummer on TEXTAREA",
+      "fields": [{ "id": "f1", "name": "pnr", "type": "TEXTAREA", "is_required": false, "validation_rules": { "format": "personnummer" } }],
+      "values": { "f1": "19890161-2344" },
+      "expected": { "ok": true, "issues": [], "values": { "f1": "19890161-2344" } }
+    },
+    {
+      "name": "personnummer format refuses a bad checksum",
+      "fields": [{ "id": "f1", "name": "pnr", "type": "TEXT", "is_required": true, "validation_rules": { "format": "personnummer" } }],
+      "values": { "f1": "811218-9877" },
+      "expected": { "ok": false, "issues": [{ "code": "CUSTOM_FIELD_INVALID_PERSONNUMMER", "field_id": "f1", "field_name": "pnr" }] }
+    },
+    {
+      "name": "personnummer format refuses an impossible date",
+      "fields": [{ "id": "f1", "name": "pnr", "type": "TEXT", "is_required": false, "validation_rules": { "format": "personnummer" } }],
+      "values": { "f1": "19000229-1235" },
+      "expected": { "ok": false, "issues": [{ "code": "CUSTOM_FIELD_INVALID_PERSONNUMMER", "field_id": "f1", "field_name": "pnr" }] }
+    },
+    {
+      "name": "personnummer format: empty optional value is not checked",
+      "fields": [{ "id": "f1", "name": "pnr", "type": "TEXT", "is_required": false, "validation_rules": { "format": "personnummer" } }],
+      "values": { "f1": "" },
+      "expected": { "ok": true, "issues": [], "values": {} }
+    },
+    {
+      "name": "personnummer format: length rules run first",
+      "fields": [{ "id": "f1", "name": "pnr", "type": "TEXT", "is_required": false, "validation_rules": { "format": "personnummer", "max_length": 5 } }],
+      "values": { "f1": "811218-9877" },
+      "expected": { "ok": false, "issues": [{ "code": "CUSTOM_FIELD_TOO_LONG", "field_id": "f1", "field_name": "pnr", "params": { "max": 5 } }] }
+    },
+    {
+      "name": "personnummer format runs before pattern",
+      "fields": [{ "id": "f1", "name": "pnr", "type": "TEXT", "is_required": false, "validation_rules": { "format": "personnummer", "pattern": "^[0-9]{6}-[0-9]{4}$" } }],
+      "values": { "f1": "811218-9877" },
+      "expected": { "ok": false, "issues": [{ "code": "CUSTOM_FIELD_INVALID_PERSONNUMMER", "field_id": "f1", "field_name": "pnr" }] }
+    },
+    {
+      "name": "unknown format is ignored",
+      "fields": [{ "id": "f1", "name": "pnr", "type": "TEXT", "is_required": false, "validation_rules": { "format": "iban" } }],
+      "values": { "f1": "abc" },
+      "expected": { "ok": true, "issues": [], "values": { "f1": "abc" } }
     }
   ],
   "generated": [

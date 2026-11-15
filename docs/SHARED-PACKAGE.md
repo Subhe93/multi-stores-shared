@@ -17,6 +17,7 @@ dependencies, not a workspace).
 | `@multi-stores/core/personalization/rules` | M4.0 field rules (`validatePersonalization`, `charCount`, patterns, error codes, ...) | api, web, dashboard (`src/lib/customFields.ts` re-exports a subset) |
 | `@multi-stores/core/personalization/types` · `/conditions` · `/evaluator` · `/display` | M4.1 evaluator and grouped display | api, web |
 | `@multi-stores/core/slug` | `src/slug/` WordPress 7.1.4 `sanitize_title` port: `sanitizeTitle`, `sanitizeAsciiHandle`, `uniqueSlug`, `normalizeSlugForLookup`, `encodeSlugForUrl` (spec: `plans/slug-wp-rules/WP-SLUG-SPEC.md`) | api, web, dashboard |
+| `@multi-stores/core/se-id` | `src/se-id/` Swedish identity numbers: `luhnValid`, `normalizeSwedishOrgNumber`, `parsePersonnummer`, `isValidPersonnummer` (personnummer / samordningsnummer, 10 or 12 digits, calendar date, Luhn; no clock). Used by the personalization rule `validation_rules.format = 'personnummer'` (`CUSTOM_FIELD_INVALID_PERSONNUMMER`) | api (trader details), rules (all apps) |
 | `@multi-stores/core/fixtures/slug.wp-vectors.json` | the 92 vectors produced by real WP PHP | package `test/slug.test.mjs` |
 | `@multi-stores/core/fixtures/personalization.vectors.json` | M4.0 rule vectors | api `rules.spec.ts`, web `rules.spec.ts` |
 | `@multi-stores/core/fixtures/personalization-cases.json` | M4.1 evaluator cases | api `evaluator.spec.ts`, web `evaluator.spec.ts` |
@@ -38,7 +39,7 @@ packages/core/
   dist/types/          declarations -> "types" condition
   scripts/build.mjs    regenerates src/designer/renderer-hash.ts, then tsc twice
   scripts/check.mjs    dist == fresh build, hash pinned, no copies in the sibling apps
-  test/*.test.mjs      node:test suites run against dist (slug)
+  test/*.test.mjs      node:test suites run against dist (slug, se-id)
   tools/check-no-copies.mjs
 ```
 

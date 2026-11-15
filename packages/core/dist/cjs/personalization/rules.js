@@ -11,7 +11,8 @@
  * depends on the ICU version (lengths are code points, not graphemes — C14).
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PERSONALIZATION_LIMITS = exports.CUSTOMER_UPLOAD_ERROR_CODES = exports.CUSTOM_FIELD_DEFINITION_ERROR_CODES = exports.CUSTOM_FIELD_ISSUE_CODES = exports.FILE_FIELD_TYPES = exports.FIELD_TYPES = void 0;
+exports.PERSONALIZATION_LIMITS = exports.FORMAT_ISSUE_CODES = exports.VALIDATION_FORMATS = exports.CUSTOMER_UPLOAD_ERROR_CODES = exports.CUSTOM_FIELD_DEFINITION_ERROR_CODES = exports.CUSTOM_FIELD_ISSUE_CODES = exports.FILE_FIELD_TYPES = exports.FIELD_TYPES = void 0;
+exports.isValidationFormat = isValidationFormat;
 exports.stripVariationSelectors = stripVariationSelectors;
 exports.charCount = charCount;
 exports.isPlainObject = isPlainObject;
@@ -29,6 +30,7 @@ exports.isValidAllowedChars = isValidAllowedChars;
 exports.fileRefPath = fileRefPath;
 exports.isFileRefPath = isFileRefPath;
 exports.validatePersonalization = validatePersonalization;
+const index_js_1 = require("../se-id/index.js");
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
@@ -64,6 +66,8 @@ exports.CUSTOM_FIELD_ISSUE_CODES = [
     'CUSTOM_FIELD_INVALID_FILE',
     'CUSTOM_FIELD_TOO_MANY_FILES',
     'CUSTOM_FIELD_INVALID_PAYLOAD',
+    /** TEXT/TEXTAREA with `validation_rules.format = 'personnummer'`. */
+    'CUSTOM_FIELD_INVALID_PERSONNUMMER',
 ];
 /**
  * Codes raised when a merchant saves a field definition (dashboard → API),
@@ -88,6 +92,18 @@ exports.CUSTOMER_UPLOAD_ERROR_CODES = [
     /** 503: the server is low on disk space; try again later. */
     'CUSTOMER_UPLOAD_STORAGE_FULL',
 ];
+/**
+ * Built-in value formats for TEXT/TEXTAREA (`validation_rules.format`).
+ * A format is checked in code, not by a merchant regex.
+ */
+exports.VALIDATION_FORMATS = ['personnummer'];
+/** Issue raised when a value does not match its field's `format`. */
+exports.FORMAT_ISSUE_CODES = {
+    personnummer: 'CUSTOM_FIELD_INVALID_PERSONNUMMER',
+};
+function isValidationFormat(v) {
+    return typeof v === 'string' && exports.VALIDATION_FORMATS.includes(v);
+}
 // ---------------------------------------------------------------------------
 // Limits
 // ---------------------------------------------------------------------------
@@ -243,6 +259,8 @@ function readValidationRules(raw) {
     if (typeof raw.allowed_chars === 'string' && raw.allowed_chars !== '') {
         out.allowed_chars = raw.allowed_chars;
     }
+    if (isValidationFormat(raw.format))
+        out.format = raw.format;
     return out;
 }
 /**
@@ -721,6 +739,9 @@ function checkValue(field, value, isFileRef, patternTester) {
             }
             if (rules.max_length !== undefined && len > rules.max_length) {
                 return { code: 'CUSTOM_FIELD_TOO_LONG', params: { max: rules.max_length } };
+            }
+            if (rules.format === 'personnummer' && !(0, index_js_1.isValidPersonnummer)(s)) {
+                return { code: exports.FORMAT_ISSUE_CODES.personnummer };
             }
             if (rules.pattern) {
                 const re = compilePattern(rules.pattern);

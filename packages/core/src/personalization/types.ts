@@ -125,6 +125,8 @@ export const P_MESSAGE_KEYS = {
   max_length: 'CUSTOM_FIELD_TOO_LONG',
   min_checked: 'CUSTOM_FIELD_MIN_CHECKED',
   max_checked: 'CUSTOM_FIELD_MAX_CHECKED',
+  /** Built-in `validation_rules.format` (e.g. personnummer). */
+  format: 'CUSTOM_FIELD_INVALID_PERSONNUMMER',
 } as const;
 
 export type PMessageKey = keyof typeof P_MESSAGE_KEYS;

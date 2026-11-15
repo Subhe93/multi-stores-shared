@@ -25,7 +25,7 @@ export interface FieldDef {
     sort_order?: number | null;
 }
 /** Issues a customer value can produce (cart, quote, order). */
-export declare const CUSTOM_FIELD_ISSUE_CODES: readonly ["CUSTOM_FIELD_REQUIRED", "CUSTOM_FIELD_TOO_SHORT", "CUSTOM_FIELD_TOO_LONG", "CUSTOM_FIELD_INVALID_NUMBER", "CUSTOM_FIELD_NUMBER_TOO_SMALL", "CUSTOM_FIELD_NUMBER_TOO_LARGE", "CUSTOM_FIELD_INVALID_FORMAT", "CUSTOM_FIELD_INVALID_CHARS", "CUSTOM_FIELD_LENGTH_MISMATCH", "CUSTOM_FIELD_COMBINED_TOO_LONG", "CUSTOM_FIELD_INVALID_OPTION", "CUSTOM_FIELD_INVALID_COLOR", "CUSTOM_FIELD_INVALID_DATE", "CUSTOM_FIELD_INVALID_FILE", "CUSTOM_FIELD_TOO_MANY_FILES", "CUSTOM_FIELD_INVALID_PAYLOAD"];
+export declare const CUSTOM_FIELD_ISSUE_CODES: readonly ["CUSTOM_FIELD_REQUIRED", "CUSTOM_FIELD_TOO_SHORT", "CUSTOM_FIELD_TOO_LONG", "CUSTOM_FIELD_INVALID_NUMBER", "CUSTOM_FIELD_NUMBER_TOO_SMALL", "CUSTOM_FIELD_NUMBER_TOO_LARGE", "CUSTOM_FIELD_INVALID_FORMAT", "CUSTOM_FIELD_INVALID_CHARS", "CUSTOM_FIELD_LENGTH_MISMATCH", "CUSTOM_FIELD_COMBINED_TOO_LONG", "CUSTOM_FIELD_INVALID_OPTION", "CUSTOM_FIELD_INVALID_COLOR", "CUSTOM_FIELD_INVALID_DATE", "CUSTOM_FIELD_INVALID_FILE", "CUSTOM_FIELD_TOO_MANY_FILES", "CUSTOM_FIELD_INVALID_PAYLOAD", "CUSTOM_FIELD_INVALID_PERSONNUMMER"];
 export type IssueCode = (typeof CUSTOM_FIELD_ISSUE_CODES)[number];
 /**
  * Codes raised when a merchant saves a field definition (dashboard → API),
@@ -64,11 +64,22 @@ export type LinkedValidation = {
     target: string;
     max: number;
 };
+/**
+ * Built-in value formats for TEXT/TEXTAREA (`validation_rules.format`).
+ * A format is checked in code, not by a merchant regex.
+ */
+export declare const VALIDATION_FORMATS: readonly ["personnummer"];
+export type ValidationFormat = (typeof VALIDATION_FORMATS)[number];
+/** Issue raised when a value does not match its field's `format`. */
+export declare const FORMAT_ISSUE_CODES: Record<ValidationFormat, IssueCode>;
+export declare function isValidationFormat(v: unknown): v is ValidationFormat;
 export interface ValidationRules {
     min_length?: number;
     max_length?: number;
     pattern?: string;
     allowed_chars?: string;
+    /** Built-in format (unknown values are ignored when read). */
+    format?: ValidationFormat;
 }
 export interface ValidatePersonalizationInput {
     fields: FieldDef[];
