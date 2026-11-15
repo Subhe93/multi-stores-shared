@@ -34,6 +34,9 @@ const PERSONNUMMER = [
   ['811292-0000', null, 'day 92 (beyond samordning range)'],
   ['811200-0000', null, 'day 00'],
   ['17811218-9876', null, 'century 17'],
+  ['18121212-1212', null, 'century 18 (born in the 1800s)'],
+  ['20301231-1233', null, 'birth date in the future (12 digits)'],
+  ['000229+1235', null, '"+" puts 29 Feb in 1900: not a date'],
   ['19811218+9876', null, '"+" only in the 10-digit form'],
   ['811218-987', null, 'too short'],
   ['81121898761', null, '11 digits'],
@@ -49,6 +52,26 @@ for (const [label, mod] of [['esm', esm], ['cjs', cjs]]) {
         assert.deepEqual(mod.parsePersonnummer(input), expected, `${note}: ${JSON.stringify(input)}`);
         assert.equal(mod.isValidPersonnummer(input), expected !== null, note);
       }
+    });
+
+    test('dates are checked against now (injected)', () => {
+      const now = new Date(2026, 10, 15, 12, 0, 0);
+      // 12 digits: today passes, tomorrow does not.
+      assert.deepEqual(mod.parsePersonnummer('20261115-1230', now), {
+        digits10: '2611151230',
+        century: 20,
+        samordning: false,
+      });
+      assert.equal(mod.parsePersonnummer('20261116-1239', now), null);
+      assert.equal(mod.isValidPersonnummer('20261116-1239', now), false);
+      // 10 digits: a date later this year resolves to the previous century.
+      assert.notEqual(mod.parsePersonnummer('261201-1235', now), null);
+      assert.notEqual(mod.parsePersonnummer('261115-1230', now), null);
+      // Tomorrow with "-" is 1926 (valid); the same with "+" is 1826 (valid date).
+      assert.notEqual(mod.parsePersonnummer('261116-1239', now), null);
+      // 29 Feb 2000 with "-" passes; with "+" it is 1900 (not a leap year).
+      assert.notEqual(mod.parsePersonnummer('000229-1235', now), null);
+      assert.equal(mod.parsePersonnummer('000229+1235', now), null);
     });
 
     test('non-string input is invalid', () => {

@@ -3,8 +3,9 @@
  * organisationsnummer (Luhn mod 10 over the 10 significant digits).
  *
  * Lives in `@multi-stores/core/se-id`; api, web and dashboard import it from
- * there. Pure code: no Node, DOM or clock dependence (a 10-digit number has
- * no reliable century without "today", so every plausible century is tried).
+ * there. No Node or DOM dependence. Personnummer checks need "today" (the
+ * century of a 10-digit number, no birth date in the future); callers may
+ * pass `now`, otherwise the current clock is read once per call.
  */
 
 /**
@@ -43,14 +44,14 @@ export function normalizeSwedishOrgNumber(raw: string): string | null {
 export interface ParsedPersonnummer {
   /** YYMMDDNNNC, the digits the checksum runs over. */
   digits10: string;
-  /** 18, 19 or 20 when the input carried a 4-digit year; null for 10 digits. */
+  /** 19 or 20 when the input carried a 4-digit year; null for 10 digits. */
   century: number | null;
   /** True for a samordningsnummer (day of month + 60). */
   samordning: boolean;
 }
 
-const TEN_DIGITS = /^([0-9]{6})[-+]?([0-9]{4})$/;
-const TWELVE_DIGITS = /^(18|19|20)([0-9]{6})-?([0-9]{4})$/;
+const TEN_DIGITS = /^([0-9]{6})([-+]?)([0-9]{4})$/;
+const TWELVE_DIGITS = /^(19|20)([0-9]{6})-?([0-9]{4})$/;
 
 function isLeapYear(year: number): boolean {
   return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
@@ -58,30 +59,41 @@ function isLeapYear(year: number): boolean {
 
 const MONTH_DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-/** True when day/month is a real date in at least one of the candidate years. */
-function isCalendarDate(month: number, day: number, years: readonly number[]): boolean {
+/** True when day/month is a real date in `year`. */
+function isCalendarDate(year: number, month: number, day: number): boolean {
   if (month < 1 || month > 12 || day < 1) return false;
-  if (month === 2 && day === 29) return years.some(isLeapYear);
+  if (month === 2 && day === 29) return isLeapYear(year);
   return day <= MONTH_DAYS[month - 1]!;
+}
+
+/** Comparable YYYYMMDD number. */
+function dateKey(year: number, month: number, day: number): number {
+  return year * 10000 + month * 100 + day;
 }
 
 /**
  * Parses a Swedish personnummer or samordningsnummer.
  *
  * Accepted shapes (whitespace anywhere is ignored):
- *   - YYMMDD-NNNC, YYMMDD+NNNC (100+ years old), YYMMDDNNNC
- *   - YYYYMMDD-NNNC, YYYYMMDDNNNC with century 18, 19 or 20
+ *   - YYMMDD-NNNC, YYMMDDNNNC (under 100 years old), YYMMDD+NNNC (100 or
+ *     older)
+ *   - YYYYMMDD-NNNC, YYYYMMDDNNNC with century 19 or 20
  * Rules: month 01-12; day 01-31, or 61-91 for a samordningsnummer (the real
- * day + 60); the date must exist (29 Feb of a 10-digit number passes when any
- * candidate century makes the year a leap year); Luhn over the 10 digits.
- * Returns null when any rule fails.
+ * day + 60); the date must exist in the birth year; the birth date may not
+ * be after `now`; Luhn over the 10 digits. A 10-digit number takes the
+ * latest century that puts the birth date on or before `now`, one century
+ * earlier with "+" (the Skatteverket rule). Returns null when any rule fails.
  */
-export function parsePersonnummer(raw: unknown): ParsedPersonnummer | null {
+export function parsePersonnummer(
+  raw: unknown,
+  now: Date = new Date(),
+): ParsedPersonnummer | null {
   if (typeof raw !== 'string') return null;
   const input = raw.replace(/\s+/g, '');
   let date6: string;
   let serial: string;
   let century: number | null = null;
+  let plus = false;
   const long = TWELVE_DIGITS.exec(input);
   if (long) {
     century = Number(long[1]);
@@ -91,21 +103,31 @@ export function parsePersonnummer(raw: unknown): ParsedPersonnummer | null {
     const short = TEN_DIGITS.exec(input);
     if (!short) return null;
     date6 = short[1]!;
-    serial = short[2]!;
+    plus = short[2] === '+';
+    serial = short[3]!;
   }
   const yy = Number(date6.slice(0, 2));
   const month = Number(date6.slice(2, 4));
   let day = Number(date6.slice(4, 6));
   const samordning = day >= 61 && day <= 91;
   if (samordning) day -= 60;
-  const years = century === null ? [1800 + yy, 1900 + yy, 2000 + yy] : [century * 100 + yy];
-  if (!isCalendarDate(month, day, years)) return null;
+  const today = dateKey(now.getFullYear(), now.getMonth() + 1, now.getDate());
+  let year: number;
+  if (century !== null) {
+    year = century * 100 + yy;
+  } else {
+    year = Math.floor(now.getFullYear() / 100) * 100 + yy;
+    if (dateKey(year, month, day) > today) year -= 100;
+    if (plus) year -= 100;
+  }
+  if (!isCalendarDate(year, month, day)) return null;
+  if (dateKey(year, month, day) > today) return null;
   const digits10 = date6 + serial;
   if (!luhnValid(digits10)) return null;
   return { digits10, century, samordning };
 }
 
 /** True for a well-formed personnummer or samordningsnummer (see `parsePersonnummer`). */
-export function isValidPersonnummer(raw: unknown): boolean {
-  return parsePersonnummer(raw) !== null;
+export function isValidPersonnummer(raw: unknown, now?: Date): boolean {
+  return parsePersonnummer(raw, now) !== null;
 }
