@@ -18,6 +18,7 @@ dependencies, not a workspace).
 | `@multi-stores/core/personalization/types` · `/conditions` · `/evaluator` · `/display` | M4.1 evaluator and grouped display | api, web |
 | `@multi-stores/core/slug` | `src/slug/` WordPress 7.1.4 `sanitize_title` port: `sanitizeTitle`, `sanitizeAsciiHandle`, `uniqueSlug`, `normalizeSlugForLookup`, `encodeSlugForUrl` (spec: `plans/slug-wp-rules/WP-SLUG-SPEC.md`) | api, web, dashboard |
 | `@multi-stores/core/se-id` | `src/se-id/` Swedish identity numbers: `luhnValid`, `normalizeSwedishOrgNumber`, `parsePersonnummer`, `isValidPersonnummer` (personnummer / samordningsnummer, 10 or 12 digits, calendar date, Luhn; no clock). Used by the personalization rule `validation_rules.format = 'personnummer'` (`CUSTOM_FIELD_INVALID_PERSONNUMMER`) | api (trader details), rules (all apps) |
+| `@multi-stores/core/link-ref` | `src/link-ref/` M165 store link references: `parseStoreLinkRef`, `isStoreLinkRef`, `formatProductRef`, `PRODUCT_REF_RE` (`product:<uuid>[?query][#hash]`; `collection:` / `page:` reserved) | api (sanitiser), web (resolver), dashboard (link field) |
 | `@multi-stores/core/fixtures/slug.wp-vectors.json` | the 92 vectors produced by real WP PHP | package `test/slug.test.mjs` |
 | `@multi-stores/core/fixtures/personalization.vectors.json` | M4.0 rule vectors | api `rules.spec.ts`, web `rules.spec.ts` |
 | `@multi-stores/core/fixtures/personalization-cases.json` | M4.1 evaluator cases | api `evaluator.spec.ts`, web `evaluator.spec.ts` |

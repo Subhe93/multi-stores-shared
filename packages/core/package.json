@@ -2,7 +2,7 @@
   "name": "@multi-stores/core",
   "version": "1.0.0",
   "private": true,
-  "description": "Pure modules shared by multi-stores-api, -web and -dashboard (personalization rules + evaluator, designer renderer, WordPress-compatible slugs, Swedish identity numbers). See ../../docs/SHARED-PACKAGE.md.",
+  "description": "Pure modules shared by multi-stores-api, -web and -dashboard (personalization rules + evaluator, designer renderer, WordPress-compatible slugs, Swedish identity numbers, store link references). See ../../docs/SHARED-PACKAGE.md.",
   "license": "UNLICENSED",
   "sideEffects": false,
   "exports": {
@@ -30,6 +30,11 @@
       "types": "./dist/types/se-id/index.d.ts",
       "import": "./dist/esm/se-id/index.js",
       "require": "./dist/cjs/se-id/index.js"
+    },
+    "./link-ref": {
+      "types": "./dist/types/link-ref/index.d.ts",
+      "import": "./dist/esm/link-ref/index.js",
+      "require": "./dist/cjs/link-ref/index.js"
     },
     "./slug": {
       "types": "./dist/types/slug/index.d.ts",
