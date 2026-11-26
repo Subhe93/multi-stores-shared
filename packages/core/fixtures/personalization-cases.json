@@ -1187,6 +1187,45 @@
      }
     ]
    }
+  ],
+  "cap": [
+   {
+    "id": "c",
+    "name": "cap_name",
+    "type": "TEXT",
+    "is_required": false,
+    "sort_order": 0,
+    "validation_rules": {
+     "max_length": 6
+    },
+    "pricing": {
+     "mode": "per_char",
+     "amount": "1"
+    },
+    "ui": {
+     "transform": "capitalize",
+     "counter": true
+    }
+   },
+   {
+    "id": "d",
+    "name": "cap_second",
+    "type": "TEXT",
+    "is_required": false,
+    "sort_order": 1,
+    "validation_rules": {
+     "max_length": 6
+    },
+    "linked_validation": {
+     "type": "equal_length",
+     "target": "cap_name",
+     "fill_char": "❤"
+    },
+    "ui": {
+     "transform": "capitalize",
+     "counter": "linked"
+    }
+   }
   ]
  },
  "evaluate": [
@@ -4661,6 +4700,97 @@
    "raw": {},
    "differentFrom": {
     "cb": []
+   },
+   "expect": {
+    "ok": true
+   }
+  },
+  {
+   "name": "capitalize (M173): first letter upper, the rest lower",
+   "defs": "cap",
+   "ctx": {},
+   "raw": {
+    "c": "aNNA"
+   },
+   "expect": {
+    "ok": true,
+    "values": {
+     "c": "Anna"
+    },
+    "priceDelta": "4.00"
+   }
+  },
+  {
+   "name": "capitalize (M173): all caps and Swedish letters, trimmed first",
+   "defs": "cap",
+   "ctx": {},
+   "raw": {
+    "c": "  ÅSA-ÖÄ "
+   },
+   "expect": {
+    "ok": true,
+    "values": {
+     "c": "Åsa-öä"
+    },
+    "priceDelta": "6.00"
+   }
+  },
+  {
+   "name": "capitalize (M173): a leading digit stays, the rest is lower-cased",
+   "defs": "cap",
+   "ctx": {},
+   "raw": {
+    "c": "1ANNA"
+   },
+   "expect": {
+    "ok": true,
+    "values": {
+     "c": "1anna"
+    },
+    "priceDelta": "5.00"
+   }
+  },
+  {
+   "name": "capitalize (M173): never changes the length (ß stays, ẞ lowers to ß)",
+   "defs": "cap",
+   "ctx": {},
+   "raw": {
+    "c": "ßTRAẞE"
+   },
+   "expect": {
+    "ok": true,
+    "values": {
+     "c": "ßtraße"
+    },
+    "priceDelta": "6.00"
+   }
+  },
+  {
+   "name": "capitalize (M173): equal_length compares the transformed values",
+   "defs": "cap",
+   "ctx": {},
+   "raw": {
+    "c": "ANNA",
+    "d": "oLLE"
+   },
+   "expect": {
+    "ok": true,
+    "values": {
+     "c": "Anna",
+     "d": "Olle"
+    },
+    "priceDelta": "4.00"
+   }
+  },
+  {
+   "name": "capitalize (M173): differently typed case merges into one line",
+   "defs": "cap",
+   "ctx": {},
+   "raw": {
+    "c": "ANNA"
+   },
+   "sameAs": {
+    "c": "anna"
    },
    "expect": {
     "ok": true

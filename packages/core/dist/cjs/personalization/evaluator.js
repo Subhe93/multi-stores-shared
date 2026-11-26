@@ -23,6 +23,8 @@ exports.readRepeat = readRepeat;
 exports.repeaterIndexes = repeaterIndexes;
 exports.optionValues = optionValues;
 exports.resolvePalette = resolvePalette;
+exports.capitalizeFirst = capitalizeFirst;
+exports.applyTextTransform = applyTextTransform;
 exports.normalizeText = normalizeText;
 exports.checkboxSelection = checkboxSelection;
 exports.pickFieldTranslation = pickFieldTranslation;
@@ -215,10 +217,55 @@ function readCheckedRules(raw) {
 // ---------------------------------------------------------------------------
 // Values
 // ---------------------------------------------------------------------------
+/**
+ * Case mapping of ONE code point that never changes the length: the mapped
+ * form is used only when it is a single code point with the same UTF-16
+ * length. "ß" (upper "SS") and "İ" (lower "i" + U+0307) therefore stay as
+ * they are. Locale independent (no Turkish dotless i).
+ */
+function mapCaseSameLength(cp, upper) {
+    const mapped = upper ? cp.toUpperCase() : cp.toLowerCase();
+    return mapped.length === cp.length && Array.from(mapped).length === 1 ? mapped : cp;
+}
+/**
+ * `ui.transform: 'capitalize'` (M173): the first code point of the value is
+ * upper case and every other one lower case ("aNNA" -> "Anna"). Whole value,
+ * not per word. Digits and symbols are unchanged; after a leading digit the
+ * rest is still lower-cased. Leading whitespace is skipped (the server trims
+ * it), so the live input and the stored value agree. Works on code points and
+ * keeps both the code point count and the UTF-16 length (max_length,
+ * per_char pricing, equal_length and the caret position depend on it).
+ * Idempotent.
+ */
+function capitalizeFirst(s) {
+    let out = '';
+    let first = true;
+    for (const cp of s) {
+        if (first && cp.trim() === '') {
+            out += cp;
+            continue;
+        }
+        out += mapCaseSameLength(cp, first);
+        first = false;
+    }
+    return out;
+}
+/**
+ * Applies `ui.transform` to an already normalized text. The single
+ * implementation behind the server normalization and the storefront input.
+ * Unknown / absent / 'none' -> unchanged.
+ */
+function applyTextTransform(s, transform) {
+    if (transform === 'uppercase')
+        return s.toUpperCase();
+    if (transform === 'capitalize')
+        return capitalizeFirst(s);
+    return s;
+}
 /** App-mode text normalization (D7): NFC, strip VS15/16, trim, then `ui.transform`. */
 function normalizeText(s, transform) {
     const t = (0, rules_js_1.stripVariationSelectors)(s.normalize('NFC')).trim();
-    return transform === 'uppercase' ? t.toUpperCase() : t;
+    return applyTextTransform(t, transform);
 }
 /**
  * CHECKBOX_GROUP selection. Key absent → `ui.default_checked` (PPOM default);

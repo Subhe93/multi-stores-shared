@@ -54,7 +54,8 @@ export interface PRepeat {
 }
 export interface PUi {
     placement?: 'before_variants' | 'after_variants';
-    transform?: 'uppercase' | 'none';
+    /** 'capitalize' (M173): first letter upper case, the rest lower case (whole value). */
+    transform?: 'uppercase' | 'capitalize' | 'none';
     counter?: boolean | 'linked';
     insert_char?: string;
     limit_to_target?: boolean;

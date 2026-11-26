@@ -77,6 +77,23 @@ export interface PaletteEntry {
  * `imageMap`), else `options` with `ui.palette_hex`.
  */
 export declare function resolvePalette(def: PFieldDef, ctx: Pick<PContext, 'optionConfig' | 'activeOptionValues'>): PaletteEntry[];
+/**
+ * `ui.transform: 'capitalize'` (M173): the first code point of the value is
+ * upper case and every other one lower case ("aNNA" -> "Anna"). Whole value,
+ * not per word. Digits and symbols are unchanged; after a leading digit the
+ * rest is still lower-cased. Leading whitespace is skipped (the server trims
+ * it), so the live input and the stored value agree. Works on code points and
+ * keeps both the code point count and the UTF-16 length (max_length,
+ * per_char pricing, equal_length and the caret position depend on it).
+ * Idempotent.
+ */
+export declare function capitalizeFirst(s: string): string;
+/**
+ * Applies `ui.transform` to an already normalized text. The single
+ * implementation behind the server normalization and the storefront input.
+ * Unknown / absent / 'none' -> unchanged.
+ */
+export declare function applyTextTransform(s: string, transform?: string | null): string;
 /** App-mode text normalization (D7): NFC, strip VS15/16, trim, then `ui.transform`. */
 export declare function normalizeText(s: string, transform?: string | null): string;
 /**
