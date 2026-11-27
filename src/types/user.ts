@@ -53,6 +53,8 @@ export interface IAddress {
   postal_code: string;
   country_code: string;
   phone?: string;
+  /** M175: "c/o" line of a delivery address (set by Kustom checkouts). */
+  care_of?: string | null;
   is_default: boolean;
 }
 

@@ -212,6 +212,8 @@ export interface InvoiceAddress {
   state: string | null;
   country_code: string;
   phone: string | null;
+  /** M175: "c/o" line; absent on snapshots written before it existed. */
+  care_of?: string | null;
 }
 
 export interface InvoiceSeller {
@@ -239,7 +241,11 @@ export interface InvoiceSeller {
 
 export interface InvoiceBuyer {
   type: BuyerType;
-  /** Company name, else the address name, else the customer's name. */
+  /**
+   * Company name, else the BUYER's own name (the customer profile), else
+   * the name on the order's address. Snapshots written before M175 put the
+   * address name (the parcel's recipient) before the customer's name.
+   */
   name: string;
   company_name: string | null;
   org_number: string | null;
